@@ -1,0 +1,20 @@
+<% hide_attending ||= false %>
+<table class='event_list'>
+  <% for event in events %>
+    <% if event.starts_at.strftime("%A") != @day_of_week %>
+      <% @day_of_week = event.starts_at.strftime("%A") %>
+      <tr class='heading'>
+        <th colspan='10'>
+          <%= @day_of_week %>
+        </th>
+      </tr>
+    <% end %>
+    <tr<%= ' class="attending"' if logged_in? && !hide_attending && current_user.events.include?(event) %>>
+      <th><%= link_to event.title, event %></th>
+      <td class='connections'><%= link_to pluralize(event.users.count, "attendee").gsub(" ","&nbsp;") %></td>
+    <% if logged_in? %><td class='connections'><%= link_to pluralize(current_user.friends_at(event).size, "connection").gsub(" ", "&nbsp;"), event %></td><% end %>
+      <td><%= event.starts_at.strftime("%A") %></td>
+      <td><%= event.starts_at.strftime("%I:%M%p").downcase %></td>        
+    </tr>
+  <% end %>
+</table>

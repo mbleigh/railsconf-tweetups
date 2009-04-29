@@ -1,5 +1,6 @@
 .DS_Store
 log/*.log
 tmp/**/*
-config/database.yml
+/config/database.yml
+/config/twitter_auth.yml
 db/*.sqlite3

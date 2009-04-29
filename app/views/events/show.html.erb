@@ -1,0 +1,21 @@
+<h2><%= @event.title %></h2>
+
+<p><%= @event.description %></p>
+
+<% if logged_in? %>
+  <h3>My Connections</h3>
+
+  <% if @friends.any? %>
+    <%= render :partial => "users/avatar_list", :locals => { :users => @friends } %>
+  <% else %>
+    <p>You do not have any connections at this session.</p>
+  <% end %>
+<% end %>
+
+<h3>Who's Coming</h3>
+
+<% if @users.any? %>
+  <%= render :partial => "users/avatar_list", :locals => {:users => @users} %>
+<% else %>
+  <p>No one has added this event to their schedule yet.</p>
+<% end %>

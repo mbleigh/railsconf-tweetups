@@ -1,0 +1,26 @@
+  <h2>My Network at RailsConf</h2>
+
+  <% if @friends.any? %>
+    <%= render :partial => "users/avatar_list", :locals => {:users => @friends} %>
+  <% else %>
+    <p>No members of your Twitter network have posted their RailsConf schedules yet.</p>
+  <% end %>
+
+<% if current_user.events.empty? %>
+  <h2>Add Your Schedule</h2>
+
+  <p>To add your schedule, copy the "download" (iCal) link from <a href='http://en.oreilly.com/rails2009/public/schedule/personal' target='_blank'>Your RailsConf Personal Schedule</a> and paste it into the box below.</p>
+<% else %>
+  <h2>My Schedule</h2>
+  
+  <%= render :partial => "events/list", :locals => {:hide_attending => true, :events => @events} %>
+
+  <h2>Update Your Schedule</h2>
+
+  <p>You have already added your schedule (see below), but you can update it if your schedule has changed by pasting the "download" link from <a href='http://en.oreilly.com/rails2009/public/schedule/personal' target='_blank'>Your RailsConf Personal Schedule</a> in the form below.</p>
+<% end %>
+
+  <% form_tag '/users/fetch_schedule', :id => 'schedule_form' do %>
+    <%= text_field_tag 'fetch_url' %> <button type='submit'>Update My Schedule</button>
+  <% end %>
+

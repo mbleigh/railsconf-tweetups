@@ -1,5 +1,16 @@
-<h2>Welcome to Your Twitter Application!</h2>
+<h2>Welcome to RailsConf TweetUps!</h2>
 
-<p>You have successfully created a Twitter-ready application! To test it out just click on <strong>Login via Twitter</strong> above. You should be taken to Twitter and then back here where it will tell you that you are logged in!</p>
+<p>If you're going to <a href='http://www.railsconf.com/' target='_blank'>RailsConf</a> this year, you might want to know who in your Twitter network is going, and to which sessions. <strong>RailsConf Tweetups</strong> is a tool created by <a href='http://intridea.com' target='_blank'>Intridea</a> that lets you upload your RailsConf schedule and see who among your followers and friends are going to which sessions.</p>
 
-<p>This template doesn't assume anything about how you want to build your application other than that you want to use Twitter authentication to do it, so you can generate any controllers, models, and anything else you like! You can tie it back to Twitter accounts simply by adding associations etc. to <code>app/models/user.rb</code>.</p>
+<h2>Brought To You By...</h2>
+
+<table class='sponsors'>
+  <tr>
+    <th><%= link_to image_tag('/images/intridea-logo.jpg'), "http://www.intridea.com", :target => '_blank' %></th>
+    <th><%= link_to image_tag("/images/presently-logo.jpg"), "http://present.ly", :target => "_blank" %></th>
+  </tr>
+</table>
+
+<h2>Newest Members</h2>
+
+<%= render :partial => "users/avatar_list", :locals => {:users => User.by_date.limit(10) } %>

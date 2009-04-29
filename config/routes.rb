@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.home '/home', :controller => 'users', :action => 'home'
+  map.resources :users
+  map.resources :events  
   map.static '/:action', :controller => 'static'
 
   map.root :controller => 'static', :action => 'index'
@@ -20,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
 
   # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
+  #   map.remap.user '/:id', :controller => 'users', :action => 'show'sources :products, :has_many => [ :comments, :sales ], :has_one => :seller
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

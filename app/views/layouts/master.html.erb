@@ -3,14 +3,19 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title>RailsConf Meetup - <%= @title || "Powered by TwitterAuth" %></title>
+    <title>RailsConf TweetUps - <%= @title || "Powered by TwitterAuth" %></title>
     <%= stylesheet_link_tag 'master' %>
   </head>
   <body>
+    <h1><%= link_to "RailsConf TweetUps", '/' %></h1>
+
     <div id='wrapper'>
       <div id='header'>
-        <h1>RailsConf Meetup</h1>
-        
+        <% ubermenu :id => 'nav' do |m| %>
+          <% m.action 'Home', '/' %>
+          <% m.action 'My RailsConf', '/home' if logged_in? %>
+          <% m.action 'Events', events_path %>
+        <% end %>  
         <div id='user_bar'>
           <% if logged_in? %>
             <%= image_tag(current_user.profile_image_url, :width => 24, :height => 24) %> Logged in as <strong>@<%= current_user.login %></strong>. <%= link_to 'Log out', '/logout' %>
@@ -21,11 +26,12 @@
         <div class='clearfix'></div>
       </div>
       <div id='contents'>
+        <%= render :partial => "layouts/flash", :locals => {:flash => flash} %> 
         <%= yield %>
       </div>
     </div>
     <div id='footer'>
-      Copyright &copy; 2009 RailsConf Meetup. Powered by <%= link_to 'TwitterAuth', 'http://mbleigh.com/twitter-auth', :target => '_blank' %>.
+      Copyright &copy; 2009 <%= link_to 'Intridea, Inc', 'http://intridea.com', :target => '_blank' %>. Powered by <%= link_to 'TwitterAuth', 'http://mbleigh.com/twitter-auth', :target => '_blank' %> (<%= link_to 'Source', 'http://github.com/mbleigh/railsconf-tweetups', :target => '_blank' %>) 
     </div>
   </body>
 </html>
