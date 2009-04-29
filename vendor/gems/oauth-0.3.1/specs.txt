@@ -1,0 +1,13 @@
+Problems with Specs:
+====================
+
+9.1.1 Normalize Request Parameters
+
+# escapes out individual parameters. Spec says this should simply order and concatenate them. FIXED
+# duplicate key names should be sorted by value FIXED in mojodna fork
+
+9.1.2.  Construct Request URL
+
+# Should normalize using scheme, host and path leaving out other uri parameters. Scheme and host should be lowercase. FIXED
+
+
