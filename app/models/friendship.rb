@@ -9,8 +9,8 @@ class Friendship < ActiveRecord::Base
   named_scope :mutual, :conditions => {:kind => 'Mutual'}
 
   def self.mass_create(kind, user, twitter_ids)
-    User.in_twitter_ids(twitter_ids).each do |friend|
-      create(:user => user, :kind => kind, :friend => friend)
+    User.all.each do |friend|
+      create(:user => user, :kind => kind, :friend => friend) if twitter_ids.include?(friend.twitter_id.to_i)
     end
   end
 end
