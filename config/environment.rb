@@ -7,6 +7,14 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  config.gem 'webrat'
+  config.gem 'carlosbrando-remarkable', :lib => 'remarkable', :source => 'http://gems.github.com'
+  config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
+  config.gem 'rspec-rails', :lib => false
+  config.gem 'rspec', :lib => false
+  config.gem 'cucumber'
+  config.gem 'twitter-auth', :lib => 'twitter_auth'
+  config.gem 'haml', :version => '>= 2.0.6'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
