@@ -7,7 +7,10 @@ class User < TwitterAuth::GenericUser
   has_many :friendships
   has_many :friends, :through => :friendships, :source => :friend
 
-  named_scope :in_twitter_ids, lambda{|ids| {:conditions => ["users.twitter_id IN (?)", ids]}}
+  named_scope :in_twitter_ids, lambda{|ids| 
+    {:conditions => ids.collect{|id| "users.twitter_id = '#{id}'"}.join(" OR ")}
+  }
+
   named_scope :by_date, :order => "created_at DESC"
   named_scope :limit, lambda{ |l| {:limit => l} }
 
