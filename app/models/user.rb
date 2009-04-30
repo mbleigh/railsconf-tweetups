@@ -37,6 +37,7 @@ class User < TwitterAuth::GenericUser
     Friendship.mass_create('Follower', self, followers)
     Friendship.mass_create('Following', self, following)    
 
+    self.update_attributes(:updated_at => Time.now)
     self.friends
   end
 
